@@ -43,7 +43,7 @@ public class Histograma extends javax.swing.JFrame {
         add(panelOriginalG);
         add(panelOriginalB);
 
-        final BufferedImage[] imgs = Utils.histograma3IMG(img);
+        final BufferedImage[] imgs = Utils.histogram3IMG(img);
 
         panelOriginal.addGraphicListener(new OwnPanel.GraphicListener() {
 
@@ -51,7 +51,7 @@ public class Histograma extends javax.swing.JFrame {
             public void draw(Graphics g) {
 
                 BufferedImage transformada = img;
-                // BufferedImage transformada = Utils.escaladegrises(img);
+                // BufferedImage transformada = Utils.to_gray_scale(img);
 
                 g.drawImage(transformada, 0, 0, panelOriginal.getWidth(), panelOriginal.getHeight(), null);
 
@@ -71,7 +71,7 @@ public class Histograma extends javax.swing.JFrame {
             public void draw(Graphics g) {
 
                 BufferedImage transformada = imgs[0];
-                // BufferedImage transformada = Utils.escaladegrises(img);
+                // BufferedImage transformada = Utils.to_gray_scale(img);
 
                 g.drawImage(transformada, 0, 0, panelOriginalR.getWidth(), panelOriginalR.getHeight(), null);
 
@@ -90,7 +90,7 @@ public class Histograma extends javax.swing.JFrame {
             public void draw(Graphics g) {
 
                 BufferedImage transformada = imgs[1];
-                // BufferedImage transformada = Utils.escaladegrises(img);
+                // BufferedImage transformada = Utils.to_gray_scale(img);
 
                 g.drawImage(transformada, 0, 0, panelOriginalG.getWidth(), panelOriginalG.getHeight(), null);
 
@@ -109,7 +109,7 @@ public class Histograma extends javax.swing.JFrame {
             public void draw(Graphics g) {
 
                 BufferedImage transformada = imgs[2];
-                // BufferedImage transformada = Utils.escaladegrises(img);
+                // BufferedImage transformada = Utils.to_gray_scale(img);
 
                 g.drawImage(transformada, 0, 0, panelOriginalB.getWidth(), panelOriginalB.getHeight(), null);
 

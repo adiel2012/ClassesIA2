@@ -49,7 +49,7 @@ public class Rojo extends javax.swing.JFrame {
             public void draw(Graphics g) {
 
               BufferedImage transformada = img;
-               // BufferedImage transformada = Utils.escaladegrises(img);
+               // BufferedImage transformada = Utils.to_gray_scale(img);
 
                 g.drawImage(transformada, 0, 0,ownPanel1.getWidth(), ownPanel1.getHeight(), null);
 
@@ -68,8 +68,8 @@ public class Rojo extends javax.swing.JFrame {
             @Override
             public void draw(Graphics g) {
 
-              BufferedImage transformada = Utils.solorojo(img);
-               // BufferedImage transformada = Utils.escaladegrises(img);
+              BufferedImage transformada = Utils.only_red(img);
+               // BufferedImage transformada = Utils.to_gray_scale(img);
 
                 g.drawImage(transformada, 0, 0,ownPanel2.getWidth(), ownPanel2.getHeight(), null);
 

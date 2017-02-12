@@ -40,7 +40,7 @@ public class Brillo extends javax.swing.JFrame {
             public void draw(Graphics g) {
 
              double d = (double) (jSlider1.getValue() - jSlider1.getMinimum()) / (jSlider1.getMaximum() - jSlider1.getMinimum());
-             BufferedImage transformada = Utils.aumentarBrillo(img,1+(d-0.5));
+             BufferedImage transformada = Utils.IncreaseBright(img,1+(d-0.5));
 
             
               g.drawImage(transformada, 0, 0, ownPanel1.getWidth(),ownPanel1.getHeight(), null);   
@@ -127,7 +127,7 @@ public class Brillo extends javax.swing.JFrame {
     private void dibujar() {
 
         double d = (double) (jSlider1.getValue() - jSlider1.getMinimum()) / (jSlider1.getMaximum() - jSlider1.getMinimum());
-        BufferedImage transformada = Utils.aumentarBrillo(img,1+(d-0.5));
+        BufferedImage transformada = Utils.IncreaseBright(img,1+(d-0.5));
 
         Graphics g = ownPanel1.getGraphics();
          g.drawImage(transformada, 0, 0, ownPanel1.getWidth(),ownPanel1.getHeight(), null);   

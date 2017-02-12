@@ -38,7 +38,7 @@ public class Umbral extends javax.swing.JFrame {
 
         try {
             img = ImageIO.read(new File("paisaje-de-flores.jpg"));
-            gris = Utils.escaladegrises(img);
+            gris = Utils.to_gray_scale(img);
         } catch (IOException ex) {
             Logger.getLogger(Umbral.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,7 +73,7 @@ public class Umbral extends javax.swing.JFrame {
             public void draw(Graphics g) {
 
                 double d = (double) (jSlider1.getValue() - jSlider1.getMinimum()) / (jSlider1.getMaximum() - jSlider1.getMinimum());
-                BufferedImage transformada = Utils.umbralizar(gris, d);
+                BufferedImage transformada = Utils.threshold(gris, d);
 
                  g.drawImage(transformada, 0, 0, ownPanel1.getWidth(),ownPanel1.getHeight(), null);   
             
@@ -258,7 +258,7 @@ public class Umbral extends javax.swing.JFrame {
     private void dibujar() {
 
         double d = (double) (jSlider1.getValue() - jSlider1.getMinimum()) / (jSlider1.getMaximum() - jSlider1.getMinimum());
-        BufferedImage transformada = Utils.umbralizar(gris, d);
+        BufferedImage transformada = Utils.threshold(gris, d);
 
         Graphics g = ownPanel1.getGraphics();
          g.drawImage(transformada, 0, 0, ownPanel1.getWidth(),ownPanel1.getHeight(), null);   

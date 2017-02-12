@@ -50,7 +50,7 @@ public class Suavizado extends javax.swing.JFrame {
             public void draw(Graphics g) {
 
                 BufferedImage transformada = img;
-                // BufferedImage transformada = Utils.escaladegrises(img);
+                // BufferedImage transformada = Utils.to_gray_scale(img);
 
                 g.drawImage(transformada, 0, 0, ownPanel1.getWidth(), ownPanel1.getHeight(), null);
 
@@ -69,9 +69,9 @@ public class Suavizado extends javax.swing.JFrame {
             @Override
             public void draw(Graphics g) {
 
-//                BufferedImage transformada = Utils.suavizar(img);
+//                BufferedImage transformada = Utils.Blur(img);
                 BufferedImage transformada = Utils.Convolute(img, new double[][]{new double[]{(double) 1 / 9, (double) 1 / 9, (double) 1 / 9}, new double[]{(double) 1 / 9, (double) 1 / 9, (double) 1 / 9}, new double[]{(double) 1 / 9, (double) 1 / 9, (double) 1 / 9}});
-                // BufferedImage transformada = Utils.escaladegrises(img);
+                // BufferedImage transformada = Utils.to_gray_scale(img);
 
                 g.drawImage(transformada, 0, 0, ownPanel2.getWidth(), ownPanel2.getHeight(), null);
 

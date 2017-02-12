@@ -24,7 +24,7 @@ import javax.swing.JFrame;
 public class CentroMasa extends javax.swing.JFrame {
 
     /**
-     * Creates new form CentroMasa
+     * Creates new form center_of_mass
      */
     BufferedImage img;
     public CentroMasa() {
@@ -42,8 +42,8 @@ public class CentroMasa extends javax.swing.JFrame {
             @Override
             public void draw(Graphics g) {
 
-              Point cm = Utils.CentroMasa(Utils.escaladegrises(img));
-               // BufferedImage transformada = Utils.escaladegrises(img);
+              Point cm = Utils.center_of_mass(Utils.to_gray_scale(img));
+               // BufferedImage transformada = Utils.to_gray_scale(img);
 
               int r = 5;
               g.setColor(Color.red);

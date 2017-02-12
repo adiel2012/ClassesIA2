@@ -23,7 +23,7 @@ import javax.swing.JFrame;
 public class Laplace extends javax.swing.JFrame {
 
     /**
-     * Creates new form Laplace
+     * Creates new form laplace_filter
      */
     BufferedImage img;
 
@@ -50,7 +50,7 @@ public class Laplace extends javax.swing.JFrame {
             public void draw(Graphics g) {
 
               BufferedImage transformada = img;
-               // BufferedImage transformada = Utils.escaladegrises(img);
+               // BufferedImage transformada = Utils.to_gray_scale(img);
 
                 g.drawImage(transformada, 0, 0,ownPanel1.getWidth(), ownPanel1.getHeight(), null);
 
@@ -69,8 +69,8 @@ public class Laplace extends javax.swing.JFrame {
             @Override
             public void draw(Graphics g) {
 
-              BufferedImage transformada = Utils.Laplace(Utils.escaladegrises(img));
-               // BufferedImage transformada = Utils.escaladegrises(img);
+              BufferedImage transformada = Utils.laplace_filter(Utils.to_gray_scale(img));
+               // BufferedImage transformada = Utils.to_gray_scale(img);
 
                 g.drawImage(transformada, 0, 0,ownPanel2.getWidth(), ownPanel2.getHeight(), null);
 

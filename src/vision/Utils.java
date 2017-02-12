@@ -25,7 +25,7 @@ public class Utils {
         return a > b ? a : b;
     }
 
-    public static BufferedImage aumentarcontraste(BufferedImage imagen) {
+    public static BufferedImage IncreaseContrast(BufferedImage imagen) {
 
         contrastFunction f = new contrastFunction() {
 
@@ -63,7 +63,7 @@ public class Utils {
 //        });
 //        canvas3.repaint();
 //    }
-    public static BufferedImage disminuircontraste(BufferedImage imagen) {
+    public static BufferedImage DecreaseContrast(BufferedImage imagen) {
         contrastFunction f = new contrastFunction() {
 
             @Override
@@ -89,7 +89,7 @@ public class Utils {
         return res;
     }
 
-    public static BufferedImage aumentarBrillo(BufferedImage imagen, double m) {
+    public static BufferedImage IncreaseBright(BufferedImage imagen, double m) {
 
         BufferedImage imageActual = imagen;
         System.out.println(imagen.getType());
@@ -108,7 +108,7 @@ public class Utils {
         return res;
     }
 
-    public static BufferedImage escaladegrises(BufferedImage imagen) {
+    public static BufferedImage to_gray_scale(BufferedImage imagen) {
 
         BufferedImage imageActual = imagen;
         System.out.println(imagen.getType());
@@ -128,7 +128,7 @@ public class Utils {
 
     }
 
-    public static BufferedImage umbralizar(BufferedImage imagen_procesada, double d) {
+    public static BufferedImage threshold(BufferedImage imagen_procesada, double d) {
         BufferedImage imageActual = imagen_procesada;
 //        System.out.println(imagen.getType());
         BufferedImage res = new BufferedImage(imageActual.getWidth(), imageActual.getHeight(), imageActual.getType());
@@ -146,34 +146,34 @@ public class Utils {
         return res;
     }
 
-    public static BufferedImage Laplace(BufferedImage imagen_procesada) {
+    public static BufferedImage laplace_filter(BufferedImage imagen_procesada) {
 
-        float[][] data = getData(imagen_procesada);
-        float[][] datax = Convolute(data, new float[][]{{0, 1, 0}, {1, -4, 1}, {0, 1, 0}});
-        return Utils.BitmapFromData(Contract(datax));
-//        return Utils.BitmapFromData(Clamp(datax, 0, 1));
+        float[][] data = get_data(imagen_procesada);
+        float[][] datax = convolute(data, new float[][]{{0, 1, 0}, {1, -4, 1}, {0, 1, 0}});
+        return Utils.bitmap_from_data(contract(datax));
+//        return Utils.bitmap_from_data(Clamp(datax, 0, 1));
 
     }
 
-    public static BufferedImage sobel(BufferedImage imagen_procesada) {
+    public static BufferedImage sobel_filter(BufferedImage imagen_procesada) {
 
-        float[][] data = getData(imagen_procesada);
+        float[][] data = get_data(imagen_procesada);
 
-        float[][] datax = Clamp(Differentiate(data, new int[][]{{1, 2, 1}, {0, 0, 0}, {-1, -2, -1}}), 0, 1);
-        float[][] datay = Clamp(Differentiate(data, new int[][]{{2, 1, 0}, {1, 0, -1}, {0, -2, -2}}), 0, 1);
+        float[][] datax = Clamp(differentiate(data, new int[][]{{1, 2, 1}, {0, 0, 0}, {-1, -2, -1}}), 0, 1);
+        float[][] datay = Clamp(differentiate(data, new int[][]{{2, 1, 0}, {1, 0, -1}, {0, -2, -2}}), 0, 1);
 
         float[][] datahipotenusa = hipotenusa(datax, datay);
 
-//        BitmapFromData(Clamp(datahipotenusa,0,1));
-        //umbralizar(BitmapFromData(Contract(datahipotenusa)), 0.8);
-        //BufferedImage nuevo = umbralizar(BitmapFromData(Contract(datahipotenusa)), 0.2);
-        //nuevo = Util.BitmapFromData(Util.Contract(datax));
-        BufferedImage nuevo = BitmapFromData(Clamp(datahipotenusa, 0, 1));
+//        bitmap_from_data(Clamp(datahipotenusa,0,1));
+        //umbralizar(bitmap_from_data(contract(datahipotenusa)), 0.8);
+        //BufferedImage nuevo = threshold(bitmap_from_data(contract(datahipotenusa)), 0.2);
+        //nuevo = Util.bitmap_from_data(Util.contract(datax));
+        BufferedImage nuevo = bitmap_from_data(Clamp(datahipotenusa, 0, 1));
         return nuevo;
 
     }
 
-    public static int[] gethistogram(BufferedImage img) {
+    public static int[] get_histogram(BufferedImage img) {
         int[] res = new int[256];
         for (int i = 0; i < img.getHeight(); i++) {
             for (int j = 0; j < img.getWidth(); j++) {
@@ -184,7 +184,7 @@ public class Utils {
         return res;
     }
 
-    public static int[][] histograma3(BufferedImage img) {
+    public static int[][] histogram3(BufferedImage img) {
 
         int[][] res = new int[3][256];
         for (int i = 0; i < img.getHeight(); i++) {
@@ -198,12 +198,12 @@ public class Utils {
 
     }
 
-    public static BufferedImage[] histograma3IMG(BufferedImage img) {
+    public static BufferedImage[] histogram3IMG(BufferedImage img) {
 
         BufferedImage imageActual = img;
         System.out.println(img.getType());
         BufferedImage[] resultado = new BufferedImage[3];
-        int[][] datas = histograma3(img);
+        int[][] datas = histogram3(img);
         Color[] colors = new Color[]{Color.RED, Color.GREEN, Color.BLUE};
 
         for (int chanelindex = 0; chanelindex < 3; chanelindex++) {
@@ -243,7 +243,7 @@ public class Utils {
 
     }
 
-    public static BufferedImage disminuirBrillo(BufferedImage imagen) {
+    public static BufferedImage decrease_bright(BufferedImage imagen) {
         BufferedImage imageActual = imagen;
         System.out.println(imagen.getType());
         BufferedImage res = new BufferedImage(imageActual.getWidth(), imageActual.getHeight(), imagen.getType());
@@ -260,7 +260,7 @@ public class Utils {
         return res;
     }
 
-    public static BufferedImage suavizar(BufferedImage imagen) {
+    public static BufferedImage Blur(BufferedImage imagen) {
 
         BufferedImage imageActual = imagen;
         System.out.println(imagen.getType());
@@ -345,7 +345,7 @@ public class Utils {
         return res;
     }
 
-    static Point CentroMasa(BufferedImage escaladegrises) {
+    static Point center_of_mass(BufferedImage escaladegrises) {
 
         double sumx = 0, sumy = 0;
         double m00 = 0, m01 = 0, m10 = 0;
@@ -362,7 +362,7 @@ public class Utils {
         return new Point((int) (m10 / m00), (int) (m01 / m00));
     }
 
-    static BufferedImage solorojo(BufferedImage imagen) {
+    static BufferedImage only_red(BufferedImage imagen) {
 
         BufferedImage imageActual = imagen;
         System.out.println(imagen.getType());
@@ -381,7 +381,7 @@ public class Utils {
         return res;
     }
 
-    static BufferedImage SegmentationKMean(BufferedImage img, int numclusters, int MaxNumIterations) {
+    static BufferedImage segmentation_kmean(BufferedImage img, int numclusters, int MaxNumIterations) {
 
         SimpleKMedias kmean = new SimpleKMedias();
         kmean.setNumClusters(numclusters);
@@ -425,7 +425,7 @@ public class Utils {
         public double getvalue(float d);
     }
 
-    public static float[][] getData(BufferedImage abmp) {
+    public static float[][] get_data(BufferedImage abmp) {
         float[][] res = new float[abmp.getWidth()][abmp.getHeight()];
         int _w = abmp.getWidth();
         int _h = abmp.getHeight();
@@ -439,7 +439,7 @@ public class Utils {
         return res;
     }
 
-    public static BufferedImage BitmapFromData(float[][] adata) {
+    public static BufferedImage bitmap_from_data(float[][] adata) {
         int _w = adata.length;
         int _h = adata[0].length;
         BufferedImage bmp = new BufferedImage(_w, _h, 5);
@@ -454,7 +454,7 @@ public class Utils {
         return bmp;
     }
 
-    public static float[][] Differentiate(float[][] Data, int[][] Filter) {
+    public static float[][] differentiate(float[][] Data, int[][] Filter) {
         int i, j, k, l, Fh, Fw;
 
         Fw = Filter.length;
@@ -484,7 +484,7 @@ public class Utils {
 
     }
 
-    public static float[][] Convolute(float[][] Data, float[][] Filter) {
+    public static float[][] convolute(float[][] Data, float[][] Filter) {
         int i, j, k, l, Fh, Fw;
 
         Fw = Filter.length;
@@ -513,7 +513,7 @@ public class Utils {
 
     }
 
-    public static float[][] Contract(float[][] adata) {
+    public static float[][] contract(float[][] adata) {
         float[][] adata2 = adata.clone();
         int _w = adata2.length;
         int _h = adata2[0].length;
@@ -551,26 +551,26 @@ public class Utils {
         return res;
     }
 
-    public static BufferedImage[] TransformadaFourier(BufferedImage img) {
-
-        BufferedImage real = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
-        BufferedImage imaginaria = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
-        double phi = 0;
-        for (int i = 0; i < img.getWidth(); i++) {
-            for (int j = 0; j < img.getHeight(); j++) {
-                double suma1 = 0, suma2 = 0;
-                for (int x = 0; x < img.getWidth(); x++) {
-                    for (int y = 0; y < img.getHeight(); y++) {
-//                        phi=2*Math.PI*
-                    }
-                }
-//                Color c = new Color(img.getRGB(i, j));
-//                c = new Color(c.getRed(), 0, 0);
-//                res.setRGB(i, j, c.getRGB());
-            }
-        }
-
-        return new BufferedImage[]{real, imaginaria};
-    }
+//    public static BufferedImage[] TransformadaFourier(BufferedImage img) {
+//
+//        BufferedImage real = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
+//        BufferedImage imaginaria = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
+//        double phi = 0;
+//        for (int i = 0; i < img.getWidth(); i++) {
+//            for (int j = 0; j < img.getHeight(); j++) {
+//                double suma1 = 0, suma2 = 0;
+//                for (int x = 0; x < img.getWidth(); x++) {
+//                    for (int y = 0; y < img.getHeight(); y++) {
+////                        phi=2*Math.PI*
+//                    }
+//                }
+////                Color c = new Color(img.getRGB(i, j));
+////                c = new Color(c.getRed(), 0, 0);
+////                res.setRGB(i, j, c.getRGB());
+//            }
+//        }
+//
+//        return new BufferedImage[]{real, imaginaria};
+//    }
 
 }
